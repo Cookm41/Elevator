@@ -25,24 +25,31 @@ public class elevatorMain {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.print("Enter the starting floor: ");
+		System.out.print("Enter the starting floor (between 1 and 150): ");
 		String startFloor = scan.nextLine();
 		
 		// catch exception if the value input is not an integer
 		try
 		{
 			int startFloorInt = Integer.parseInt(startFloor);
-			System.out.print("Enter the floors visited (between 1 and 150), separated by a comma: ");  
-			String floorsInput = scan.nextLine();
-			
-			scan.close();
-			
-			String[] floorsVisited = floorsInput.split(",");
-			
-			List<Integer> totalFloors = parseFloorsFromInput(startFloorInt, floorsVisited);
-			int time = addTravelTime(totalFloors);
-			
-			System.out.print("Total travel time: " + time + ". Floors visited: " + listToString(totalFloors));
+			if(startFloorInt >= LOWER_FLOOR_LIMIT && startFloorInt <= UPPER_FLOOR_LIMIT)
+			{
+				System.out.print("Enter the floors visited (between 1 and 150), separated by a comma: ");  
+				String floorsInput = scan.nextLine();
+				
+				scan.close();
+				
+				String[] floorsVisited = floorsInput.split(",");
+				
+				List<Integer> totalFloors = parseFloorsFromInput(startFloorInt, floorsVisited);
+				int time = addTravelTime(totalFloors);
+				
+				System.out.print("Total travel time: " + time + ". Floors visited: " + listToString(totalFloors));
+			}
+			else
+			{
+				System.out.println("Invalid start floor number entered. Must be between 1 and 150.");
+			}
 		}
 		catch(NumberFormatException nfe)
 		{
