@@ -81,7 +81,14 @@ public class elevatorMain {
 				int x = Integer.parseInt(trimmed);
 				if(x >= LOWER_FLOOR_LIMIT && x <= UPPER_FLOOR_LIMIT)
 				{
-					floorsToIntList.add(x);
+					if(x == 13)
+					{
+						System.out.println("The 13th floor does not exist. Happy Halloween!");
+					}
+					else
+					{
+						floorsToIntList.add(x);
+					}
 				}
 				else
 				{
